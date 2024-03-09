@@ -1,0 +1,41 @@
+body{
+    background-color: #1c558bf5
+}
+
+.heading{
+    text-align: center;
+    font-weight: bold;
+    
+
+}
+
+#location {
+    color: white;
+}
+
+#temparature{
+    text-align: center;
+    font-weight: 250vw;
+    font-size: 6vw;
+    color:#FDB600
+
+}
+#current-temprature{
+    margin-left: 0px;
+}
+#week{
+    text-align: center;
+    font-weight: 250vw;
+    font-size: 6vw;
+    background-color: #19A4E0;
+    border-radius: 10px;
+}
+#week1{
+    
+    background-color: #093649;
+    border-radius: 10px;
+    margin-right: 10%;
+    margin-left: 10%;
+    display: flex;
+    justify-content: space-around;
+}
