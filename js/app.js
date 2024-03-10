@@ -1,3 +1,41 @@
+
+
+////////////////////////////////////////////////////////////////////////    date & time        /////////////////////////////////////////////////////////
+
+// Function to update the clock every second
+function updateClock() {
+
+    var currentDate = new Date();
+    var localMonth = currentDate.getMonth();
+    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    var localMonthName = months[localMonth];
+    var localDay = currentDate.getDate();
+
+    var localWeekDay = currentDate.getDay();
+    var weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    var localWeekDayName = weekDays[localWeekDay];
+
+    var localHour = currentDate.getHours();
+    var localMinute = currentDate.getMinutes();
+    var localSecond = currentDate.getSeconds();
+
+    
+    // Add leading zeros before 10
+    localDay = localDay < 10 ? "0" + localDay : localDay;
+    localHour = localHour < 10 ? "0" + localHour : localHour;
+    localMinute = localMinute < 10 ? "0" + localMinute : localMinute;
+    localSecond = localSecond < 10 ? "0" + localSecond : localSecond;
+    // Create a string with the local date and time
+    var localDateTimeString = localWeekDayName + ", " + localMonthName + " " + localDay + " " + localHour + ":" + localMinute + ":" + localSecond;
+    // Target the HTML element with id "localDateTime" and set its content to the local date and time string
+    document.getElementById("date&time").textContent = localDateTimeString;
+}
+// Call updateClock function initially to set the clock without delay
+updateClock();
+// Update the clock every second
+setInterval(updateClock, 1000);
+
+/////////////////////////////////////////////////////////////////////       Search      ///////////////////////////////////////////////////////////////////
 document.getElementById("searchBtn").addEventListener("click", () => {
     let searchVal = document.getElementById("searchTxt").value;
     let reop = {
@@ -96,7 +134,7 @@ fetch(`http://api.weatherapi.com/v1/forecast.json?key=ee16cdd2901442cdabd5220624
         // location details 
         document.getElementById("current-city").innerHTML = data["location"]["name"];
         document.getElementById("current-contry").innerHTML = data["location"]["country"];
-        document.getElementById("date&time").innerHTML = data["location"]["localtime"];
+        // document.getElementById("date&time").innerHTML = ;
 
         // temprature
         document.getElementById("cur-temparature").innerHTML = data["current"]["temp_c"];
@@ -197,4 +235,3 @@ fetch(`http://api.weatherapi.com/v1/forecast.json?key=ee16cdd2901442cdabd5220624
         document.getElementById("city-4-text").innerHTML = data["current"]["condition"]["text"];
 
     })
-
