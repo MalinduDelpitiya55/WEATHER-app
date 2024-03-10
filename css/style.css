@@ -39,3 +39,28 @@ body{
     display: flex;
     justify-content: space-around;
 }
+
+
+#sunset {
+    background-image: url('./../assets/pexels-pixabay-36744\ \(1\).jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 10vh;
+}
+
+.txt-white{
+    color: white;
+}
+#forecast-card {
+    background-color: #6edb5a;
+}
+
+#forecast-card .table th,
+#forecast-card .table td {
+    background-color: #6edb5a;
+    color: #000000;
+}
+
+#forecast-card .table td{
+    text-align: end;
+}
