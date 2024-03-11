@@ -1,11 +1,11 @@
-body{
-    background-color: #1c558bf5
+#hero-section {
+    background: #69a8e3f5
 }
 
-.heading{
+.heading {
     text-align: center;
     font-weight: bold;
-    
+
 
 }
 
@@ -13,25 +13,27 @@ body{
     color: white;
 }
 
-#temparature{
+#temparature {
     text-align: center;
     font-weight: 250vw;
     font-size: 6vw;
-    color:#FDB600
-
+    color: #FDB600
 }
-#current-temprature{
+
+#current-temprature {
     margin-left: 0px;
 }
-#week{
+
+#week {
     text-align: center;
     font-weight: 250vw;
     font-size: 6vw;
     background-color: #19A4E0;
     border-radius: 10px;
 }
-#week1{
-    
+
+#week1 {
+
     background-color: #093649;
     border-radius: 10px;
     margin-right: 10%;
@@ -48,9 +50,10 @@ body{
     min-height: 10vh;
 }
 
-.txt-white{
+.txt-white {
     color: white;
 }
+
 #forecast-card {
     background-color: #6edb5a;
 }
@@ -61,6 +64,6 @@ body{
     color: #000000;
 }
 
-#forecast-card .table td{
+#forecast-card .table td {
     text-align: end;
 }

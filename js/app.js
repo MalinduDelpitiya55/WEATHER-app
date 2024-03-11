@@ -105,12 +105,12 @@ document.getElementById("searchBtn").addEventListener("click", () => {
 
         // week temprature
         document.getElementById("day-1").src = data["current"]["condition"]["icon"];
-        document.getElementById("day-2").src = data["current"]["condition"]["icon"];
-        document.getElementById("day-3").src = data["current"]["condition"]["icon"];
-        document.getElementById("day-4").src = data["current"]["condition"]["icon"];
-        document.getElementById("day-5").src = data["current"]["condition"]["icon"];
-        document.getElementById("day-6").src = data["current"]["condition"]["icon"];
-        document.getElementById("day-7").src = data["current"]["condition"]["icon"];
+        // document.getElementById("day-2").src = data["current"]["condition"]["icon"];
+        // document.getElementById("day-3").src = data["current"]["condition"]["icon"];
+        // document.getElementById("day-4").src = data["current"]["condition"]["icon"];
+        // document.getElementById("day-5").src = data["current"]["condition"]["icon"];
+        // document.getElementById("day-6").src = data["current"]["condition"]["icon"];
+        // document.getElementById("day-7").src = data["current"]["condition"]["icon"];
 
 })
     
@@ -161,12 +161,12 @@ fetch(`http://api.weatherapi.com/v1/forecast.json?key=ee16cdd2901442cdabd5220624
 
         // week temprature
         document.getElementById("day-1").src = data["current"]["condition"]["icon"];
-        document.getElementById("day-2").src = data["current"]["condition"]["icon"];
-        document.getElementById("day-3").src = data["current"]["condition"]["icon"];
-        document.getElementById("day-4").src = data["current"]["condition"]["icon"];
-        document.getElementById("day-5").src = data["current"]["condition"]["icon"];
-        document.getElementById("day-6").src = data["current"]["condition"]["icon"];
-        document.getElementById("day-7").src = data["current"]["condition"]["icon"];
+        // document.getElementById("day-2").src = data["current"]["condition"]["icon"];
+        // document.getElementById("day-3").src = data["current"]["condition"]["icon"];
+        // document.getElementById("day-4").src = data["current"]["condition"]["icon"];
+        // document.getElementById("day-5").src = data["current"]["condition"]["icon"];
+        // document.getElementById("day-6").src = data["current"]["condition"]["icon"];
+        // document.getElementById("day-7").src = data["current"]["condition"]["icon"];
 
     })
     
