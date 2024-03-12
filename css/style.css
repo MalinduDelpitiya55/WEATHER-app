@@ -1,4 +1,4 @@
-#hero-section {
+body {
     background: #69a8e3f5
 }
 
@@ -54,16 +54,25 @@
     color: white;
 }
 
-#forecast-card {
-    background-color: #6edb5a;
-}
-
 #forecast-card .table th,
 #forecast-card .table td {
-    background-color: #6edb5a;
-    color: #000000;
+    background-color: transparent;
+   
 }
 
 #forecast-card .table td {
     text-align: end;
+}
+
+
+#city-forecast .table th,
+#city-forecast .table td {
+    background-color: transparent;
+
+}
+
+
+#side-conrtainer {
+    background-color: #50505042;
+    box-shadow: 10px,0px,8px,8px, rgb(0, 0, 0);
 }
