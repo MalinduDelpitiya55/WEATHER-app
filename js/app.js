@@ -15,20 +15,20 @@ function updateClock() {
     var localMinute = currentDate.getMinutes();
     var localSecond = currentDate.getSeconds();
 
-// Add leading zeros before 10
-    
+    // Add leading zeros before 10
+
     localDay = localDay < 10 ? "0" + localDay : localDay;
     localHour = localHour < 10 ? "0" + localHour : localHour;
     localMinute = localMinute < 10 ? "0" + localMinute : localMinute;
     localSecond = localSecond < 10 ? "0" + localSecond : localSecond;
 
-// Create a string with the local date and time
-    
+    // Create a string with the local date and time
+
     var localDateTimeString = localWeekDayName + ", " + localMonthName + " " + localDay + " " + localHour + ":" + localMinute + ":" + localSecond;
-    
-// Target the HTML element with id "localDateTime" and set its content to the local date and time string
-    
-    document.getElementById("date&time").textContent = localDateTimeString;
+
+    // Target the HTML element with id "localDateTime" and set its content to the local date and time string
+
+    document.getElementById("date-time").textContent = localDateTimeString;
 }
 
 // Call updateClock function initially to set the clock without delay
@@ -57,7 +57,7 @@ function locationData() {
 
             // location details 
             document.getElementById("current-city").innerHTML = data["location"]["name"];
-            document.getElementById("current-contry").innerHTML = data["location"]["country"];
+            document.getElementById("current-country").innerHTML = data["location"]["country"];
             // document.getElementById("date&time").innerHTML = ;
 
             // temprature
@@ -140,7 +140,6 @@ function cityData() {
     fetch(`http://api.weatherapi.com/v1/forecast.json?key=ee16cdd2901442cdabd52206240703&q=jaffna&days=7&aqi=yes&alerts=yes`, reop)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
 
             //============================== city tempurature =========================
 
@@ -155,7 +154,6 @@ function cityData() {
     fetch(`http://api.weatherapi.com/v1/forecast.json?key=ee16cdd2901442cdabd52206240703&q=malabe&days=7&aqi=yes&alerts=yes`, reop)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
 
             //============================== city tempurature ==============================
 
@@ -173,11 +171,11 @@ function pastThreeDays() {
     const startDate = new Date();
     let currentDay1 = new Date(startDate);
 
-
     for (let i = 3; i > 0; i--) {
+
         currentDay1.setDate(currentDay1.getDate() - 1);
         //hethuw blann toISOString, split
-        const formattedDate = currentDay1.toISOString().split('T')[0];
+        let formattedDate = currentDay1.toISOString().split('T')[0];
 
         fetch(`http://api.weatherapi.com/v1/history.json?key=ee16cdd2901442cdabd52206240703&q=London&dt=${formattedDate}&days=7`)
             .then(response => response.json())
@@ -198,8 +196,8 @@ function pastThreeDays() {
                 console.error("Error:", error);
             });
 
-    } 
-    
+    }
+
     let currentDay2 = new Date(startDate);
     for (let i = 0; i < 7; i++) {
         //hethuw blann toISOString, split
@@ -235,13 +233,13 @@ locationData();
 
 //============================================= Search =========================================================//
 
-    function search(){
-        console.log("hghgdg");
+function search() {
+    console.log("hghgdg");
     let searchVal = document.getElementById("searchTxt").value;
     let reop = {
         method: 'GET'
     };
-    fetch(`http://api.weatherapi.com/v1/forecast.json?key=ee16cdd2901442cdabd52206240703&q=malabe&days=7&aqi=yes&alerts=yes`, reop)
+    fetch(`http://api.weatherapi.com/v1/forecast.json?key=ee16cdd2901442cdabd52206240703&q=${searchVal}&days=7&aqi=yes&alerts=yes`, reop)
         .then(response => response.json())
         .then(data => {
             console.log(data);
@@ -280,3 +278,59 @@ locationData();
         })
         .then(error => console.log("error", error))
 }
+
+// =============================     theme    ================================
+
+document.getElementById('theme').addEventListener(
+    "click",
+    () => {
+        if (document.getElementById('darkmode-toggle').checked) {
+            document.body.setAttribute("data-bs-theme", "light");
+        } else {
+            document.body.setAttribute("data-bs-theme", "dark");
+        }
+    }
+);
+
+
+// =============================     unit     ================================
+
+const checkbox = document.getElementById('check-unit');
+const currentUnit = document.getElementById('current-unit');
+const changingUnit = document.getElementById('Changing-unit');
+
+checkbox.addEventListener('change', function () {
+    let reop = {
+        method: 'GET'
+    };
+    fetch(`http://api.weatherapi.com/v1/forecast.json?key=ee16cdd2901442cdabd52206240703&q=colombo&days=7&aqi=yes&alerts=yes`, reop)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+
+            if (this.checked) {
+                // Checkbox is checked, switch to Fahrenheit
+                currentUnit.textContent = '°F';
+                changingUnit.textContent = '°C';
+                document.getElementById("cur-temparature").innerHTML = data["current"]["temp_f"];
+                document.getElementById("feel-temparature").innerHTML = data["current"]["feelslike_f"];
+                document.getElementById("high-temparature").innerHTML = `${data.forecast.forecastday[0].day.maxtemp_f}`;
+                document.getElementById("low-temparature").innerHTML = `${data.forecast.forecastday[0].day.mintemp_f}`;
+
+            } else {
+                // Checkbox is unchecked, switch to Celsius
+                currentUnit.textContent = '°C';
+                changingUnit.textContent = '°F';
+                document.getElementById("cur-temparature").innerHTML = data["current"]["temp_c"];
+                document.getElementById("feel-temparature").innerHTML = data["current"]["feelslike_c"];
+                document.getElementById("high-temparature").innerHTML = `${data.forecast.forecastday[0].day.maxtemp_c}`;
+                document.getElementById("low-temparature").innerHTML = `${data.forecast.forecastday[0].day.mintemp_c}`;
+            }
+        });
+});
+
+
+
+//===================================   map =============================
+
+
