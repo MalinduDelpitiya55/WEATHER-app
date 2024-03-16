@@ -120,7 +120,7 @@ async function cityWeather(location, elementsPrefix) {
             // Checkbox is checked, switch to Fahrenheit
             currentUnit.textContent = '°F';
             changingUnit.textContent = '°C';
-            document.getElementById(`${elementsPrefix}-temparature`).innerHTML = data["current"]["temp_f"];
+            document.getElementById(`${ elementsPrefix }-temparature`).innerHTML = data["current"]["temp_f"];
         } else {
             // Checkbox is unchecked, switch to Celsius
             currentUnit.textContent = '°C';
@@ -259,8 +259,6 @@ cityWeather('nuwaraeliya', 'city-2');
 cityWeather('jaffna', 'city-3');
 cityWeather('malabe', 'city-4');
 
-currentMap('colombo');
-
 // Search function
 function search() {
     const searchVal = document.getElementById("searchTxt").value;
@@ -280,60 +278,3 @@ const currentUnit = document.getElementById('current-unit');
 const changingUnit = document.getElementById('Changing-unit');
 // Function to toggle temperature unit
 
-
-
-
-
-//===================================   map =============================
-
-let map; // Declare a variable to hold the map instance
-
-function initializeMap(latitude, longitude, pin) {
-    if (!map) {
-        map = L.map('map').setView([latitude, longitude], 13);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-    } else {
-        map.setView([latitude, longitude], 13);
-    }
-
-    // Add a marker to the map
-    L.marker([latitude, longitude]).addTo(map)
-        .bindPopup(`Location: ${pin}`)
-        .openPopup();
-}
-
-// Event listener for search button
-document.getElementById("searchBtn").addEventListener("click", async () => {
-    try {
-        const searchVal = document.getElementById("searchTxt").value;
-        const { latitude, longitude } = await fetchLocationData(searchVal);
-        initializeMap(latitude, longitude, searchVal);
-    } catch (error) {
-        console.error('Error during fetch:', error);
-        // Handle errors
-    }
-});
-
-async function currentMap(currentLocation) {
-    try {
-        const { latitude, longitude } = await fetchLocationData(currentLocation);
-        initializeMap(latitude, longitude, currentLocation);
-    } catch (error) {
-        console.error('Error during fetch:', error);
-        // Handle errors
-    }
-}
-
-async function fetchLocationData(location) {
-    try {
-        const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=f1850d9ec02649c4b0a84749240403&q=${location}&days=7`);
-        const data = await response.json();
-        return { latitude: data.location.lat, longitude: data.location.lon };
-    } catch (error) {
-        console.error('Error fetching location data:', error);
-        throw error; // Rethrow the error to handle it elsewhere if needed
-    }
-}
