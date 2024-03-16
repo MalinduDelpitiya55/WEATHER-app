@@ -143,7 +143,7 @@ async function updatePastThreeDays(location) {
         //hethuw blann toISOString, split
         let formattedDate = currentDay1.toISOString().split('T')[0];
 
-        const data = await fetchData(`forecast.json?q=${location}&days=3&aqi=yes&alerts=yes`);
+        const data = await fetchData(`forecast.json?q=${location}&days=3&aqi=yes&alerts=yes$dt=${formattedDate}`);
 
         // .then(response => response.json())
         //.then(data => {
@@ -188,7 +188,7 @@ async function futureSevnDays(location) {
         const formattedDate = currentDay.toISOString().split('T')[0];
 
         try {
-            const data = await fetchData(`forecast.json?q=${location}&days=7&aqi=yes&alerts=yes`);
+            const data = await fetchData(`forecast.json?q=${location}&days=7&aqi=yes&alerts=yes$dt=${formattedDate}`);
             // Define the date using the api
             var dateString = new Date(`${data.forecast.forecastday[0].date}`);
             var date = new Date(dateString);
