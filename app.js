@@ -289,10 +289,10 @@ let hour = new Date().getHours();
 const backgroundImageContainer = document.querySelector('.forecast-now');
 
 if (hour > 6 && hour < 18) {
-    backgroundImageContainer.style.backgroundImage = 'url("../assets/sun.jpg")';
+    backgroundImageContainer.style.backgroundImage = 'url("assets/sun.jpg")';
 }
 else {
-    backgroundImageContainer.style.backgroundImage = 'url("../assets/moon.jpg")';
+    backgroundImageContainer.style.backgroundImage = 'url("assets/moon.jpg")';
 }
 
 
