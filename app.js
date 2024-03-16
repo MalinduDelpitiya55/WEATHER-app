@@ -281,7 +281,15 @@ const changingUnit = document.getElementById('Changing-unit');
 // Function to toggle temperature unit
 
 
+let hour = new Date().getHours();
+const backgroundImageContainer = document.querySelector('.forecast-now');
 
+if (hour > 6 && hour < 18) {
+    backgroundImageContainer.style.backgroundImage = 'url("../assets/sun.jpg")';
+}
+else {
+    backgroundImageContainer.style.backgroundImage = 'url("../assets/moon.jpg")';
+}
 
 
 //===================================   map =============================
