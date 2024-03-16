@@ -114,7 +114,8 @@ async function cityWeather(location, elementsPrefix) {
 
     checkbox.addEventListener('change', function () {
         let reop = {
-            method: 'GET'
+            method: 'GET',
+            url: `${baseURL}current.json?key=${apiKey}&q=${location}`,
         };
         if (this.checked) {
             // Checkbox is checked, switch to Fahrenheit
@@ -143,7 +144,7 @@ async function updatePastThreeDays(location) {
         //hethuw blann toISOString, split
         let formattedDate = currentDay1.toISOString().split('T')[0];
 
-        fetch(`http://api.weatherapi.com/v1/history.json?key=ee16cdd2901442cdabd52206240703&q=${location}&dt=${formattedDate}&days=7`)
+        fetch(`${baseURL}history.json?key=ee16cdd2901442cdabd52206240703&q=${location}&dt=${formattedDate}&days=7`)
             .then(response => response.json())
             .then(data => {
                 var dateString = new Date(`${data.forecast.forecastday[0].date}`);
@@ -191,7 +192,7 @@ function futureSevnDays(location) {
         currentDay.setDate(currentDay.getDate() + 1);
         const formattedDate = currentDay.toISOString().split('T')[0];
 
-        fetch(`http://api.weatherapi.com/v1/forecast.json?key=ee16cdd2901442cdabd52206240703&q=${location}&days=7&aqi=yes&alerts=yes&dt=${formattedDate}`)
+        fetch(`${baseURL}forecast.json?key=ee16cdd2901442cdabd52206240703&q=${location}&days=7&aqi=yes&alerts=yes&dt=${formattedDate}`)
             .then(response => response.json())
             .then(data => {
                 // Define the date using the api
@@ -208,7 +209,9 @@ function futureSevnDays(location) {
 
                 checkbox.addEventListener('change', function () {
                     let reop = {
-                        method: 'GET'
+                        method: 'GET',
+                        url: `${baseURL}forecast.json?key = ee16cdd2901442cdabd52206240703 & q=${location}& days=7 & aqi=yes & alerts=yes & dt=${formattedDate}`,
+
                     };
                     if (this.checked) {
                         // Checkbox is checked, switch to Fahrenheit
