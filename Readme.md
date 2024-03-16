@@ -1,26 +1,40 @@
+
 # Weather App
 
 The Weather App offers real-time updates, forecasts, maps, and alerts with user-friendly design and robust security for reliability.
-## Table of Content
 
-- 
+
+
+
+## Author
+
+- [@MalinduDelpitiya](https://github.com/MalinduDelpitiya55)
+
+
 ## Demo
 
 https://malindudelpitiya55.github.io/WEATHER-app/
+## API Reference
 
+#### Get all items
 
-## Screenshots
+```http
+  GET /api/items
+```
 
+| Parameter| Type    | Description                                |
+| :--------| :-------| :------------------------------------------|
+| `api_key`| `string`| **Required**.ee16cdd2901442cdabd52206240703|
 
+#### Get item
 
-## Features
+```http
+  GET /api/items/${id}
+```
 
-- Display current weather conditions (temperature, Location, etc.).
-- Search for weather by location.
-- Responsive design for various devices.
-- Light/dark mode toggle
-- Live previews
-- Multiple units and formats
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to fetch |
 
 
 
@@ -31,26 +45,7 @@ https://malindudelpitiya55.github.io/WEATHER-app/
 - Bootstrap
 - Java Script
 - https://www.weatherapi.com/
-
-
-
-## API Reference
-
-#### Get all items
-
-```http
-  GET /api/items
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
-
-#### Get item
-
-
-
-
+- https://www.openstreetmap.org
 
 
 ## Documentation
@@ -62,4 +57,11 @@ https://malindudelpitiya55.github.io/WEATHER-app/
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`API_KEY`= `ee16cdd2901442cdabd52206240703`
+API_KEY= ee16cdd2901442cdabd52206240703
+
+
+
+## Web Site Screenshots
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
