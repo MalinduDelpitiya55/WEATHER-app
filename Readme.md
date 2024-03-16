@@ -50,8 +50,8 @@ https://malindudelpitiya55.github.io/WEATHER-app/
 
 ## Documentation
 
-[Documentation](https://linktodocumentation)
-
+- [Design requirements.pdf](https://github.com/MalinduDelpitiya55/WEATHER-app/files/14624942/Design.requirements.pdf)
+- [Weather Application Requirement Specification.pdf](https://github.com/MalinduDelpitiya55/WEATHER-app/files/14624944/Weather.Application.Requirement.Specification.pdf)
 
 ## Environment Variables
 
@@ -61,7 +61,7 @@ API_KEY= ee16cdd2901442cdabd52206240703
 
 
 
-## Web Site Screenshots
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
+## Web Site Screens
+![Screenshot 2024-03-17 001258](https://github.com/MalinduDelpitiya55/WEATHER-app/assets/134361651/4a502743-16e6-44b1-820a-134373b82e17)
+![Screenshot 2024-03-17 001356](https://github.com/MalinduDelpitiya55/WEATHER-app/assets/134361651/e17089c5-9757-465a-a132-1305949b5439)
+![Screenshot 2024-03-17 001421](https://github.com/MalinduDelpitiya55/WEATHER-app/assets/134361651/5c5b2d1b-3447-46a9-b85d-d3ab15beecc3)
