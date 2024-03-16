@@ -115,7 +115,8 @@ label#theme:after {
 input#darkmode-toggle {
     width: 0;
     height: 0;
-    visibility: hidden;
+     visibility: hidden; 
+     position: absolute;
 }
 
 input:checked+label#theme {
@@ -134,7 +135,6 @@ label#theme:after {
 }
 
 label#theme:active:after {
-    /* Adjust the width as needed */
     width: 70px;
 }
 
@@ -164,12 +164,3 @@ input:checked+label#theme img.sun {
 input:checked+label#theme img.moon {
     fill: #fff;
 }
-
-/* =====================unit================== */
-/* 
-#check-unit {
-    visibility: hidden;
-    position: absolute;
-} */
-
-/* =====================map================== */

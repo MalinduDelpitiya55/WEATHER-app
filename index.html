@@ -14,37 +14,44 @@
 <body class="bg-warningy" data-bs-theme="light"> <!--data-bs-theme="dark"-->
 
     <!-- ===================================================    nav bar      ======================================-->
-
-    <nav class="navbar bg-dark-subtle ">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark-subtle">
         <div class="container-fluid">
-            <a class="navbar-brand">
-                <img src="./assets/logo.png" alt="logo" width="30px">
-            </a>
-            <div class="">
-                <a class="mx-2" href="#todays-data">Today</a>
-                <a class="mx-2" href="#weekdata">Future</a>
-                <a class="mx-2" href="#city-forecast">Cities</a>
-                <a class="mx-2" href="#past-Days">Past </a>
+            <a class="navbar-brand" href="#">Weather Check</a>
 
-            </div>
-            <div class="d-flex flex-row">
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#todays-data">Today</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#weekdata">Future</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#past-Days">Past</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#city-forecast">Cities</a>
+                    </li>
+
+                </ul>
                 <div class="d-flex flex-row justify-content-around " role="search">
-                    <input class="form-control me-1 p-3 w-100 h-75" type="search" placeholder="Search" id="searchTxt">
+                    <input class="form-control " type="search" placeholder="Search" id="searchTxt">
                     <button class="btn btn-outline-success" id="searchBtn" onclick="search()">Search</button>
                 </div>
-
-
-                <div class="mx-5">
+                <div class=" ">
                     <input type="checkbox" id="darkmode-toggle">
                     <label for="darkmode-toggle" id="theme">
                         <img src="https://img.icons8.com/ios-filled/50/sun--v1.png" alt="sun--v1" class="sun" />
                         <img src="https://img.icons8.com/ios/50/crescent-moon.png" alt="crescent-moon" class="moon" />
                     </label>
                 </div>
-
+                
+                </div>
             </div>
         </div>
     </nav>
+  
 
     <!-- =====================================================   hero section    ======================================-->
     <div class="container-fluid d-flex flex-lg-row flex-md-column flex-sm-column flex-sm-column flex-column justify-content-around bg-info-subtle "
@@ -413,7 +420,7 @@
         </div>
 
     </div>
-    <div  class=" bg-info-subtle mt-0">
+    <div class=" bg-info-subtle mt-0">
         <div class=" bg-info-subtle card m-5">
             <div id="map" class="container-fluid card-body " style="width: 100%; height: 550px;">bbbvnvnvb</div>
         </div>
