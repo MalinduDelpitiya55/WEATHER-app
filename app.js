@@ -1,6 +1,5 @@
-// Constants
 const apiKey = 'ee16cdd2901442cdabd52206240703';
-const baseURL = 'http://api.weatherapi.com/v1/';
+const baseURL = 'https://api.weatherapi.com/v1/';
 
 // Reusable fetch function
 async function fetchData(endpoint) {
