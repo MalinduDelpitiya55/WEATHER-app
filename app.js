@@ -144,48 +144,43 @@ async function updatePastThreeDays(location) {
         //hethuw blann toISOString, split
         let formattedDate = currentDay1.toISOString().split('T')[0];
 
-        fetch(`(https://api.weatherapi.com/v1/forecast.json?key=ee16cdd2901442cdabd52206240703&q=colombo&days=7&aqi=yes&alerts=yes&dt=2024-03-17)`)
+        const data = await fetchData(`forecast.json?q=${location}&days=3&aqi=yes&alerts=yes`);
 
-            .then(response => response.json())
-            .then(data => {
-                var dateString = new Date(`${data.forecast.forecastday[0].date}`);
-                var date = new Date(dateString);
-                var day = date.getDate();
-                var weekdayNumber = date.getDay();
-                var weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-                var weekdayName = weekdays[weekdayNumber];
-                document.getElementById(`p-day-${i}`).innerHTML = weekdayName + "(" + day + ")";
-                document.getElementById(`p-day${i}-img`).src = `${data.forecast.forecastday[0].day.condition.icon}`;
+        // .then(response => response.json())
+        //.then(data => {
+        var dateString = new Date(`${data.forecast.forecastday[0].date}`);
+        var date = new Date(dateString);
+        var day = date.getDate();
+        var weekdayNumber = date.getDay();
+        var weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        var weekdayName = weekdays[weekdayNumber];
+        document.getElementById(`p-day-${i}`).innerHTML = weekdayName + "(" + day + ")";
+        document.getElementById(`p-day${i}-img`).src = `${data.forecast.forecastday[0].day.condition.icon}`;
+        document.getElementById(`p-day${i}-date-max`).innerHTML = `${data.forecast.forecastday[0].day.maxtemp_c}`;
+        document.getElementById(`p-day${i}-date-min`).innerHTML = `${data.forecast.forecastday[0].day.mintemp_c}`;
+
+        checkbox.addEventListener('change', function () {
+            let reop = {
+                method: 'GET'
+            };
+            if (this.checked) {
+                // Checkbox is checked, switch to Fahrenheit
+                currentUnit.textContent = '°F';
+                changingUnit.textContent = '°C';
+                document.getElementById(`p-day${i}-date-max`).innerHTML = `${data.forecast.forecastday[0].day.maxtemp_f}`;
+                document.getElementById(`p-day${i}-date-min`).innerHTML = `${data.forecast.forecastday[0].day.mintemp_f}`;
+            } else {
+                // Checkbox is unchecked, switch to Celsius
+                currentUnit.textContent = '°C';
+                changingUnit.textContent = '°F';
                 document.getElementById(`p-day${i}-date-max`).innerHTML = `${data.forecast.forecastday[0].day.maxtemp_c}`;
                 document.getElementById(`p-day${i}-date-min`).innerHTML = `${data.forecast.forecastday[0].day.mintemp_c}`;
-
-                checkbox.addEventListener('change', function () {
-                    let reop = {
-                        method: 'GET'
-                    };
-                    if (this.checked) {
-                        // Checkbox is checked, switch to Fahrenheit
-                        currentUnit.textContent = '°F';
-                        changingUnit.textContent = '°C';
-                        document.getElementById(`p-day${i}-date-max`).innerHTML = `${data.forecast.forecastday[0].day.maxtemp_f}`;
-                        document.getElementById(`p-day${i}-date-min`).innerHTML = `${data.forecast.forecastday[0].day.mintemp_f}`;
-                    } else {
-                        // Checkbox is unchecked, switch to Celsius
-                        currentUnit.textContent = '°C';
-                        changingUnit.textContent = '°F';
-                        document.getElementById(`p-day${i}-date-max`).innerHTML = `${data.forecast.forecastday[0].day.maxtemp_c}`;
-                        document.getElementById(`p-day${i}-date-min`).innerHTML = `${data.forecast.forecastday[0].day.mintemp_c}`;
-                    }
-                });
-
-            })
-            .catch(error => {
-                console.error("Error:", error);
-            });
-
+            }
+        });
     }
 }
-function futureSevnDays(location) {
+
+async function futureSevnDays(location) {
     const startDate = new Date();
     let currentDay = new Date(startDate);
     for (let i = 0; i < 7; i++) {
@@ -193,47 +188,45 @@ function futureSevnDays(location) {
         currentDay.setDate(currentDay.getDate() + 1);
         const formattedDate = currentDay.toISOString().split('T')[0];
 
-        fetch(`${baseURL}forecast.json?key=ee16cdd2901442cdabd52206240703&q=${location}&days=7&aqi=yes&alerts=yes&dt=${formattedDate}`)
-            .then(response => response.json())
-            .then(data => {
-                // Define the date using the api
-                var dateString = new Date(`${data.forecast.forecastday[0].date}`);
-                var date = new Date(dateString);
-                var day = date.getDate();
-                var weekdayNumber = date.getDay();
-                var weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-                var weekdayName = weekdays[weekdayNumber];
-                document.getElementById(`f-day-${i + 1}`).innerHTML = weekdayName + "(" + day + ")";
-                document.getElementById(`f-day${i + 1}-icon`).src = `${data.forecast.forecastday[0].day.condition.icon}`;
-                document.getElementById(`f-day${i + 1}-date-max`).innerHTML = `${data.forecast.forecastday[0].day.maxtemp_c}`;
-                document.getElementById(`f-day${i + 1}-date-min`).innerHTML = `${data.forecast.forecastday[0].day.maxtemp_c}`;
+        try {
+            const data = await fetchData(`forecast.json?q=${location}&days=7&aqi=yes&alerts=yes`);
+            // Define the date using the api
+            var dateString = new Date(`${data.forecast.forecastday[0].date}`);
+            var date = new Date(dateString);
+            var day = date.getDate();
+            var weekdayNumber = date.getDay();
+            var weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+            var weekdayName = weekdays[weekdayNumber];
+            document.getElementById(`f-day-${i + 1}`).innerHTML = weekdayName + "(" + day + ")";
+            document.getElementById(`f-day${i + 1}-icon`).src = `${data.forecast.forecastday[0].day.condition.icon}`;
+            document.getElementById(`f-day${i + 1}-date-max`).innerHTML = `${data.forecast.forecastday[0].day.maxtemp_c}`;
+            document.getElementById(`f-day${i + 1}-date-min`).innerHTML = `${data.forecast.forecastday[0].day.maxtemp_c}`;
 
-                checkbox.addEventListener('change', function () {
-                    let reop = {
-                        method: 'GET',
-                        url: `${baseURL}forecast.json?key = ee16cdd2901442cdabd52206240703 & q=${location}& days=7 & aqi=yes & alerts=yes & dt=${formattedDate}`,
+            checkbox.addEventListener('change', function () {
+                let reop = {
+                    method: 'GET',
+                    url: `${baseURL}forecast.json?key = ee16cdd2901442cdabd52206240703 & q=${location}& days=7 & aqi=yes & alerts=yes & dt=${formattedDate}`,
 
-                    };
-                    if (this.checked) {
-                        // Checkbox is checked, switch to Fahrenheit
-                        currentUnit.textContent = '°F';
-                        changingUnit.textContent = '°C';
-                        document.getElementById(`f-day${i + 1}-date-max`).innerHTML = `${data.forecast.forecastday[0].day.maxtemp_f}`;
-                        document.getElementById(`f-day${i + 1}-date-min`).innerHTML = `${data.forecast.forecastday[0].day.mintemp_f}`;
-                    } else {
-                        // Checkbox is unchecked, switch to Celsius
-                        currentUnit.textContent = '°C';
-                        changingUnit.textContent = '°F';
-                        document.getElementById(`f-day${i + 1}-date-max`).innerHTML = `${data.forecast.forecastday[0].day.maxtemp_c}`;
-                        document.getElementById(`f-day${i + 1}-date-min`).innerHTML = `${data.forecast.forecastday[0].day.mintemp_c}`;
-                    }
-                });
-
-
-            })
-            .catch(error => {
-                console.error("Error:", error);
+                };
+                if (this.checked) {
+                    // Checkbox is checked, switch to Fahrenheit
+                    currentUnit.textContent = '°F';
+                    changingUnit.textContent = '°C';
+                    document.getElementById(`f-day${i + 1}-date-max`).innerHTML = `${data.forecast.forecastday[0].day.maxtemp_f}`;
+                    document.getElementById(`f-day${i + 1}-date-min`).innerHTML = `${data.forecast.forecastday[0].day.mintemp_f}`;
+                } else {
+                    // Checkbox is unchecked, switch to Celsius
+                    currentUnit.textContent = '°C';
+                    changingUnit.textContent = '°F';
+                    document.getElementById(`f-day${i + 1}-date-max`).innerHTML = `${data.forecast.forecastday[0].day.maxtemp_c}`;
+                    document.getElementById(`f-day${i + 1}-date-min`).innerHTML = `${data.forecast.forecastday[0].day.mintemp_c}`;
+                }
             });
+
+
+        } catch (error) {
+            console.error('Error fetching future seven days weather data:', error);
+        }
     }
 }
 
