@@ -144,7 +144,8 @@ async function updatePastThreeDays(location) {
         //hethuw blann toISOString, split
         let formattedDate = currentDay1.toISOString().split('T')[0];
 
-        fetch(`${baseURL}history.json?key=${apiKey}&q=${location}&dt=${formattedDate}&days=7`)
+        fetch(`(https://api.weatherapi.com/v1/forecast.json?key=ee16cdd2901442cdabd52206240703&q=colombo&days=7&aqi=yes&alerts=yes&dt=2024-03-17)`)
+
             .then(response => response.json())
             .then(data => {
                 var dateString = new Date(`${data.forecast.forecastday[0].date}`);
@@ -254,13 +255,13 @@ document.getElementById('theme').addEventListener('click', toggleTheme);
 // Initial setup
 updateClock();
 setInterval(updateClock, 1000);
-// updatePastThreeDays('colombo');
-// futureSevnDays('colombo');
-// currentWeather('colombo');
-// cityWeather('kandy', 'city-1');
-// cityWeather('nuwaraeliya', 'city-2');
-// cityWeather('jaffna', 'city-3');
-// cityWeather('malabe', 'city-4');
+updatePastThreeDays('colombo');
+futureSevnDays('colombo');
+currentWeather('colombo');
+cityWeather('kandy', 'city-1');
+cityWeather('nuwaraeliya', 'city-2');
+cityWeather('jaffna', 'city-3');
+cityWeather('malabe', 'city-4');
 
 currentMap('colombo');
 
